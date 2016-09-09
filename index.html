@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Regman</title>
+        <!-- Blockly Core -->
+        <script src="blockly-core/blockly_compressed.js"></script>
+        <script src="blockly-core/blocks_compressed.js"></script>
+        <script src="blockly-core/en.js"></script>
+        <!-- Regman Core -->
+        <script src="blocks.js"></script>
+        <!-- Styles -->
+        <link rel="stylesheet" href="ui.css">
+    </head>
+    <body>
+
+        <!-- Toolbox Definition -->
+        <xml id="toolbox" style="display: none">
+            <block type="compose"></block>
+            <block type="one_or_more"></block>
+            <block type="any_number_of"></block>
+            <block type="maybe"></block>
+            <block type="one_of"></block>
+            <block type="alphabet"></block>
+            <block type="encode"></block>
+            <block type="any"></block>
+            <block type="option"></block>
+            <block type="math_number"></block>
+            <block type="text"></block>
+        </xml>
+
+        <!-- View -->
+        <div id="regman-coding-view"></div>
+
+        <script>
+        var workspace = Blockly.inject('regman-coding-view',
+            {toolbox: document.getElementById('toolbox')});
+        </script>
+    </body>
+</html>
