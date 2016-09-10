@@ -1,5 +1,4 @@
 
-
 //
 // ─── COMPOSE ────────────────────────────────────────────────────────────────────
 //
@@ -7,18 +6,7 @@
     Blockly.Blocks['compose'] = {
         init: function() {
             this.appendDummyInput()
-                .appendField("Regman Main Composer");
-            this.appendDummyInput()
-                .appendField("Global")
-                .appendField(new Blockly.FieldCheckbox("FALSE"), "global")
-                .appendField("Case Insensitive")
-                .appendField(new Blockly.FieldCheckbox("FALSE"), "case-insensitive")
-                .appendField("Multi-Line")
-                .appendField(new Blockly.FieldCheckbox("FALSE"), "multi-line")
-                .appendField("Unicode")
-                .appendField(new Blockly.FieldCheckbox("FALSE"), "unicode")
-                .appendField("Sticky")
-                .appendField(new Blockly.FieldCheckbox("FALSE"), "sticky");
+                .appendField("Regman");
             this.appendStatementInput("children")
                 .setCheck("String");
             this.setInputsInline(false);
@@ -28,84 +16,72 @@
         }
     };
 
-/*
-    Blockly.Regman['compose'] = function(block) {
-        var checkbox_global = block.getFieldValue('global') == 'TRUE';
-        var checkbox_case_insensitive = block.getFieldValue('case-insensitive') == 'TRUE';
-        var checkbox_multi_line = block.getFieldValue('multi-line') == 'TRUE';
-        var checkbox_unicode = block.getFieldValue('unicode') == 'TRUE';
-        var checkbox_sticky = block.getFieldValue('sticky') == 'TRUE';
-        var statements_children = Blockly.JavaScript.statementToCode(block, 'children');
+    RegmanGenerator['compose'] = function(block) {
+        var statements_children = RegmanGenerator.statementToCode(block, 'children');
         // TODO: Assemble JavaScript into code variable.
         var code = '...;\n';
         return code;
-    };*/
+    };
 
 //
 // ─── ALPHABET ───────────────────────────────────────────────────────────────────
 //
 
-Blockly.Blocks['alphabet'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Alphabet")
-        .appendField("0-9")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "numbers")
-        .appendField("a-z")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "lowercase")
-        .appendField("A-Z")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "uppercase")
-        .appendField("Other")
-        .appendField(new Blockly.FieldTextInput(""), "other");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(260);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+    Blockly.Blocks['alphabet'] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Alphabet")
+                .appendField("0-9")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "numbers")
+                .appendField("a-z")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "lowercase")
+                .appendField("A-Z")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "uppercase")
+                .appendField("Other")
+                .appendField(new Blockly.FieldTextInput(""), "other");
+            this.setInputsInline(true);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(260);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-
-/*
-Blockly.JavaScript['alphabet'] = function(block) {
-  var checkbox_numbers = block.getFieldValue('numbers') == 'TRUE';
-  var checkbox_lowercase = block.getFieldValue('lowercase') == 'TRUE';
-  var checkbox_uppercase = block.getFieldValue('uppercase') == 'TRUE';
-  var text_other = block.getFieldValue('other');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
- */
+    RegmanGenerator['alphabet'] = function(block) {
+        var checkbox_numbers = block.getFieldValue('numbers') == 'TRUE';
+        var checkbox_lowercase = block.getFieldValue('lowercase') == 'TRUE';
+        var checkbox_uppercase = block.getFieldValue('uppercase') == 'TRUE';
+        var text_other = block.getFieldValue('other');
+        // TODO: Assemble JavaScript into code variable.
+        var code = '...;\n';
+        return code;
+    };
 
 //
 // ─── ENCODE ─────────────────────────────────────────────────────────────────────
 //
 
-Blockly.Blocks['encode'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Plain Text")
-        .appendField(new Blockly.FieldTextInput(""), "text");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(330);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+    Blockly.Blocks['encode'] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Plain Text")
+                .appendField(new Blockly.FieldTextInput(""), "text");
+            this.setInputsInline(true);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(330);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-
-/*
-Blockly.JavaScript['encode'] = function(block) {
-  var text_text = block.getFieldValue('text');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-*/
+    RegmanGenerator['encode'] = function(block) {
+        var text_text = block.getFieldValue('text');
+        // TODO: Assemble JavaScript into code variable.
+        var code = '...;\n';
+        return code;
+    };
 
 //
 // ─── MORE THAN ONE ──────────────────────────────────────────────────────────────
@@ -126,14 +102,12 @@ Blockly.JavaScript['encode'] = function(block) {
   }
 };
 
-/*
-Blockly.JavaScript['one_or_more'] = function(block) {
-  var statements_regex = Blockly.JavaScript.statementToCode(block, 'regex');
+RegmanGenerator['one_or_more'] = function(block) {
+  var statements_regex = RegmanGenerator.statementToCode(block, 'regex');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
 
 //
 // ─── ANY NUMBER OF ──────────────────────────────────────────────────────────────
@@ -154,14 +128,12 @@ Blockly.JavaScript['one_or_more'] = function(block) {
   }
 };
 
-/*
-Blockly.JavaScript['any_number_of'] = function(block) {
-  var statements_regex = Blockly.JavaScript.statementToCode(block, 'regex');
+RegmanGenerator['any_number_of'] = function(block) {
+  var statements_regex = RegmanGenerator.statementToCode(block, 'regex');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
 
 //
 // ─── ANY CHARACTER ──────────────────────────────────────────────────────────────
@@ -180,13 +152,12 @@ Blockly.JavaScript['any_number_of'] = function(block) {
   }
 };
 
-/*
-Blockly.JavaScript['any'] = function(block) {
+RegmanGenerator['any'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
+
 
 //
 // ─── MAYBE ──────────────────────────────────────────────────────────────────────
@@ -207,14 +178,14 @@ Blockly.JavaScript['any'] = function(block) {
   }
 };
 
-/*
-Blockly.JavaScript['maybe'] = function(block) {
-  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+
+RegmanGenerator['maybe'] = function(block) {
+  var statements_name = RegmanGenerator.statementToCode(block, 'NAME');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
+
 
 //
 // ─── ONE OF ─────────────────────────────────────────────────────────────────────
@@ -236,13 +207,12 @@ Blockly.JavaScript['maybe'] = function(block) {
 };
 
 
-/*
-Blockly.JavaScript['maybe'] = function(block) {
-  var statements_items = Blockly.JavaScript.statementToCode(block, 'Items');
+RegmanGenerator['maybe'] = function(block) {
+  var statements_items = RegmanGenerator.statementToCode(block, 'Items');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
-};*/
+};
 
 //
 // ─── REGMAN OPTION ──────────────────────────────────────────────────────────────
@@ -263,14 +233,12 @@ Blockly.JavaScript['maybe'] = function(block) {
 };
 
 
-/*
-Blockly.JavaScript['option'] = function(block) {
-  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+RegmanGenerator['option'] = function(block) {
+  var statements_name = RegmanGenerator.statementToCode(block, 'NAME');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
 
 //
 // ─── START OF THE LINE ──────────────────────────────────────────────────────────
@@ -288,13 +256,12 @@ Blockly.JavaScript['option'] = function(block) {
   }
 };
 
-/*
-Blockly.JavaScript['line_start'] = function(block) {
+
+RegmanGenerator['line_start'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
 
 //
 // ─── END OF THE LINE ────────────────────────────────────────────────────────────
@@ -312,13 +279,11 @@ Blockly.JavaScript['line_start'] = function(block) {
   }
 };
 
-/*
-Blockly.JavaScript['line_end'] = function(block) {
+RegmanGenerator['line_end'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
 
 //
 // ─── WHITE SPACE ────────────────────────────────────────────────────────────────
@@ -344,9 +309,7 @@ Blockly.Blocks['whitespace'] = {
 };
 
 
-
-/*
-Blockly.JavaScript['whitespace'] = function(block) {
+RegmanGenerator['whitespace'] = function(block) {
   var checkbox_space = block.getFieldValue('space') == 'TRUE';
   var checkbox_tab = block.getFieldValue('tab') == 'TRUE';
   var checkbox_linefeed = block.getFieldValue('linefeed') == 'TRUE';
@@ -354,7 +317,6 @@ Blockly.JavaScript['whitespace'] = function(block) {
   var code = '...;\n';
   return code;
 };
- */
 
 //
 // ─── SPECIAL WHITE SPACE ────────────────────────────────────────────────────────
@@ -384,8 +346,7 @@ Blockly.JavaScript['whitespace'] = function(block) {
   }
 };
 
-/*
-Blockly.JavaScript['special_whitespace'] = function(block) {
+RegmanGenerator['special_whitespace'] = function(block) {
   var checkbox_vtab = block.getFieldValue('vtab') == 'TRUE';
   var checkbox_nul = block.getFieldValue('nul') == 'TRUE';
   var checkbox_carrige = block.getFieldValue('carrige') == 'TRUE';
@@ -394,7 +355,6 @@ Blockly.JavaScript['special_whitespace'] = function(block) {
   var code = '...;\n';
   return code;
 };
- */
 
 //
 // ─── RANGE ──────────────────────────────────────────────────────────────────────
@@ -406,10 +366,7 @@ Blockly.JavaScript['special_whitespace'] = function(block) {
         .appendField("Range")
         .appendField(new Blockly.FieldTextInput("a"), "start")
         .appendField("-")
-        .appendField(new Blockly.FieldTextInput("z"), "end")
-        .appendField("(case:")
-        .appendField(new Blockly.FieldDropdown([["lowercase", "lowercase"], ["UPPERCASE", "uppercase"], ["Both", "both"]]), "case")
-        .appendField(")");
+        .appendField(new Blockly.FieldTextInput("z"), "end");
     this.setInputsInline(false);
     this.setPreviousStatement(true, "String");
     this.setNextStatement(true, "String");
@@ -419,16 +376,13 @@ Blockly.JavaScript['special_whitespace'] = function(block) {
   }
   };
 
-  /*
-Blockly.JavaScript['range'] = function(block) {
+RegmanGenerator['range'] = function(block) {
   var text_start = block.getFieldValue('start');
   var text_end = block.getFieldValue('end');
-  var dropdown_case = block.getFieldValue('case');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
 
 //
 // ─── MATCH ──────────────────────────────────────────────────────────────────────
@@ -449,14 +403,38 @@ Blockly.JavaScript['range'] = function(block) {
   }
 };
 
-/*
-Blockly.JavaScript['match'] = function(block) {
-  var statements_match = Blockly.JavaScript.statementToCode(block, 'match');
+RegmanGenerator['match'] = function(block) {
+  var statements_match = RegmanGenerator.statementToCode(block, 'match');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
+
+//
+// ─── SEQUENCE ───────────────────────────────────────────────────────────────────
+//
+
+    Blockly.Blocks['sequence'] = {
+  init: function() {
+    this.appendDummyInput( )
+        .appendField("Sequence");
+    this.appendStatementInput("sequence")
+        .setCheck("String");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "String");
+    this.setNextStatement(true, "String");
+    this.setColour(260);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+RegmanGenerator['sequence'] = function(block) {
+  var statements_match = RegmanGenerator.statementToCode(block, 'match');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
 
 //
 // ─── ANYTHING BUT ───────────────────────────────────────────────────────────────
@@ -476,14 +454,12 @@ Blockly.JavaScript['match'] = function(block) {
   }
 };
 
-/*
-Blockly.JavaScript['anything_but'] = function(block) {
-  var statements_anything_but = Blockly.JavaScript.statementToCode(block, 'anything-but');
+RegmanGenerator['anything_but'] = function(block) {
+  var statements_anything_but = RegmanGenerator.statementToCode(block, 'anything-but');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
 
 //
 // ─── COMMENT ────────────────────────────────────────────────────────────────────
@@ -502,14 +478,12 @@ Blockly.JavaScript['anything_but'] = function(block) {
   }
   };
 
-/*
-Blockly.JavaScript['comment'] = function(block) {
+RegmanGenerator['comment'] = function(block) {
   var text_comment = block.getFieldValue('comment');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
 };
- */
 
 // ────────────────────────────────────────────────────────────────────────────────
 

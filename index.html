@@ -7,6 +7,7 @@
         <script src="blockly-core/blockly_compressed.js"></script>
         <script src="blockly-core/en.js"></script>
         <!-- Regman Core -->
+        <script src="generator.js"></script>
         <script src="blocks.js"></script>
         <!-- Styles -->
         <link rel="stylesheet" href="ui.css">
@@ -25,6 +26,7 @@
             <block type="alphabet"></block>
             <block type="range"></block>
             <block type="anything_but"></block>
+            <block type="sequence"></block>
             <block type="encode"></block>
             <block type="any"></block>
             <block type="whitespace"></block>
@@ -43,6 +45,8 @@
         let mainWorkspace = Blockly.inject('regman-coding-view', {
             collapse: false,
             toolbox: toolbox,
+            scrollbars: true,
+            border: false,
         });
 
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), mainWorkspace);
