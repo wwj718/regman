@@ -7,6 +7,7 @@
         <script src="blockly-core/blockly_compressed.js"></script>
         <script src="blockly-core/en.js"></script>
         <!-- Regman Core -->
+        <script src="regstd.js"></script>
         <script src="generator.js"></script>
         <script src="blocks.js"></script>
         <!-- Styles -->
@@ -42,14 +43,14 @@
         var xml = '<xml><block type="compose" deletable="false"></block></xml>';
         var toolbox = document.getElementById('toolbox');
 
-        let mainWorkspace = Blockly.inject('regman-coding-view', {
+        let workspace = Blockly.inject('regman-coding-view', {
             collapse: false,
             toolbox: toolbox,
             scrollbars: true,
             border: false,
         });
 
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), mainWorkspace);
+        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
         </script>
     </body>
 </html>

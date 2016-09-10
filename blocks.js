@@ -17,10 +17,9 @@
     };
 
     RegmanGenerator['compose'] = function(block) {
-        var statements_children = RegmanGenerator.statementToCode(block, 'children');
-        // TODO: Assemble JavaScript into code variable.
-        var code = '...;\n';
-        return code;
+        var statements_children = RegmanGenerator.statementToCode(block, 'children').trim( );
+        console.log( "'" + statements_children + "'");
+        return '/' + statements_children.trim( ) + '/';
     };
 
 //
@@ -62,101 +61,92 @@
 // ─── ENCODE ─────────────────────────────────────────────────────────────────────
 //
 
-    Blockly.Blocks['encode'] = {
-        init: function() {
-            this.appendDummyInput()
-                .appendField("Plain Text")
-                .appendField(new Blockly.FieldTextInput(""), "text");
-            this.setInputsInline(true);
-            this.setPreviousStatement(true, "String");
-            this.setNextStatement(true, "String");
-            this.setColour(330);
-            this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+    Blockly.Blocks[ 'encode' ] = {
+        init: function ( ) {
+            this.appendDummyInput( )
+                .appendField( "Plain Text" )
+                .appendField( new Blockly.FieldTextInput( "" ), "text" );
+            this.setInputsInline( true );
+            this.setPreviousStatement( true, "String" );
+            this.setNextStatement( true, "String" );
+            this.setColour( 330 );
+            this.setTooltip( '' );
+            this.setHelpUrl( 'http://www.example.com/' );
         }
     };
 
-    RegmanGenerator['encode'] = function(block) {
-        var text_text = block.getFieldValue('text');
-        // TODO: Assemble JavaScript into code variable.
-        var code = '...;\n';
-        return code;
+    RegmanGenerator[ 'encode' ] = function ( block ) {
+        return regEncodeText( block.getFieldValue( 'text' ) );
     };
 
 //
 // ─── MORE THAN ONE ──────────────────────────────────────────────────────────────
 //
 
-    Blockly.Blocks['one_or_more'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("One or more");
-    this.appendStatementInput("regex")
-        .setCheck("String");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(210);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+    Blockly.Blocks[ 'one_or_more' ] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("One or more");
+            this.appendStatementInput("regex")
+                .setCheck("String");
+            this.setInputsInline(true);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(210);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-RegmanGenerator['one_or_more'] = function(block) {
-  var statements_regex = RegmanGenerator.statementToCode(block, 'regex');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator[ 'one_or_more' ] = function ( block ) {
+        var statements_regex = RegmanGenerator.statementToCode( block, 'regex' ).trim( );
+        return regSequence( statements_regex ) + '+';
+    };
 
 //
 // ─── ANY NUMBER OF ──────────────────────────────────────────────────────────────
 //
 
     Blockly.Blocks['any_number_of'] = {
-  init: function() {
-    this.appendDummyInput( )
-        .appendField("Any number of");
-    this.appendStatementInput("regex")
-        .setCheck("String");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(210);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+        init: function() {
+            this.appendDummyInput( )
+                .appendField("Any number of");
+            this.appendStatementInput("regex")
+                .setCheck("String");
+            this.setInputsInline(true);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(210);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-RegmanGenerator['any_number_of'] = function(block) {
-  var statements_regex = RegmanGenerator.statementToCode(block, 'regex');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator['any_number_of'] = function(block) {
+        var statements_regex = RegmanGenerator.statementToCode( block, 'regex' ).trim( );
+        return regSequence( statements_regex ) + '*';
+    };
 
 //
 // ─── ANY CHARACTER ──────────────────────────────────────────────────────────────
 //
 
-    Blockly.Blocks['any'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Any Character!");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(20);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+    Blockly.Blocks[ 'any' ] = {
+        init: function( ) {
+            this.appendDummyInput()
+                .appendField("Any Character!");
+            this.setInputsInline(true);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(20);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-RegmanGenerator['any'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator[ 'any' ] = function ( block ) {
+        return '.';
+    };
 
 
 //
@@ -164,27 +154,24 @@ RegmanGenerator['any'] = function(block) {
 //
 
     Blockly.Blocks['maybe'] = {
-  init: function() {
-    this.appendDummyInput( )
-        .appendField("Maybe");
-    this.appendStatementInput("NAME")
-        .setCheck("String");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(210);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+        init: function() {
+            this.appendDummyInput( )
+                .appendField("Maybe");
+            this.appendStatementInput("NAME")
+                .setCheck("String");
+            this.setInputsInline(true);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(210);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-
-RegmanGenerator['maybe'] = function(block) {
-  var statements_name = RegmanGenerator.statementToCode(block, 'NAME');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator[ 'maybe' ] = function( block ) {
+        var statements_name = RegmanGenerator.statementToCode( block, 'NAME' ).trim();
+        return regSequence( statements_name ) + '?';
+    };
 
 
 //
@@ -207,11 +194,9 @@ RegmanGenerator['maybe'] = function(block) {
 };
 
 
-RegmanGenerator['maybe'] = function(block) {
-  var statements_items = RegmanGenerator.statementToCode(block, 'Items');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
+RegmanGenerator['one_of'] = function(block) {
+    var statements_items = RegmanGenerator.statementToCode(block, 'Items').trim( );
+    return '(' + statements_items.substring( 1 ) + ')';
 };
 
 //
@@ -233,208 +218,203 @@ RegmanGenerator['maybe'] = function(block) {
 };
 
 
-RegmanGenerator['option'] = function(block) {
-  var statements_name = RegmanGenerator.statementToCode(block, 'NAME');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
+RegmanGenerator['option'] = function ( block ) {
+  return '|' + RegmanGenerator.statementToCode(block, 'NAME').trim( );
 };
 
 //
 // ─── START OF THE LINE ──────────────────────────────────────────────────────────
 //
 
-  Blockly.Blocks['line_start'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Start of the Line");
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(20);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+    Blockly.Blocks['line_start'] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Start of the Line");
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(20);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-
-RegmanGenerator['line_start'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator[ 'line_start' ] = function ( block ) {
+        return '^';
+    };
 
 //
 // ─── END OF THE LINE ────────────────────────────────────────────────────────────
 //
 
-  Blockly.Blocks['line_end'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("End of the Line");
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(20);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+    Blockly.Blocks[ 'line_end' ] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("End of the Line");
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(20);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-RegmanGenerator['line_end'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator[ 'line_end' ] = function ( block ) {
+        return '$';
+    };
 
 //
 // ─── WHITE SPACE ────────────────────────────────────────────────────────────────
 //
 
-Blockly.Blocks['whitespace'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Whitespace")
-        .appendField("Space")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "space")
-        .appendField("Tab")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "tab")
-        .appendField("Linefeed (\\n)")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "linefeed");
-    this.setInputsInline(false);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(20);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+    Blockly.Blocks[ 'whitespace' ] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Whitespace")
+                .appendField("Space")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "space")
+                .appendField("Tab")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "tab")
+                .appendField("Linefeed (\\n)")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "linefeed");
+            this.setInputsInline(false);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(20);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
 
-RegmanGenerator['whitespace'] = function(block) {
-  var checkbox_space = block.getFieldValue('space') == 'TRUE';
-  var checkbox_tab = block.getFieldValue('tab') == 'TRUE';
-  var checkbox_linefeed = block.getFieldValue('linefeed') == 'TRUE';
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator['whitespace'] = function(block) {
+        var checkbox_space = block.getFieldValue('space') == 'TRUE';
+        var checkbox_tab = block.getFieldValue('tab') == 'TRUE';
+        var checkbox_linefeed = block.getFieldValue('linefeed') == 'TRUE';
+
+        var code = '';
+        if ( checkbox_space ) { code += '\\s' };
+        if ( checkbox_tab ) { code += '\\t' };
+        if ( checkbox_linefeed ) { code += '\\n' };
+
+        return regAlphabet( code );
+    };
 
 //
 // ─── SPECIAL WHITE SPACE ────────────────────────────────────────────────────────
 //
 
-  Blockly.Blocks['special_whitespace'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Special Whitespace");
-    this.appendDummyInput()
-        .appendField("Vertical Tab (\\v)")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "vtab")
-        .appendField("NUL (\\0)")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "nul");
-    this.appendDummyInput()
-        .appendField("Carriage Return (\\r)")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "carrige");
-    this.appendDummyInput()
-        .appendField("Form-feed (\\f)")
-        .appendField(new Blockly.FieldCheckbox("FALSE"), "formfeed");
-    this.setInputsInline(false);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(20);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+    Blockly.Blocks['special_whitespace'] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Special Whitespace");
+            this.appendDummyInput()
+                .appendField("Vertical Tab (\\v)")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "vtab")
+                .appendField("NUL (\\0)")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "nul");
+            this.appendDummyInput()
+                .appendField("Carriage Return (\\r)")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "carrige");
+            this.appendDummyInput()
+                .appendField("Form-feed (\\f)")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "formfeed");
+            this.setInputsInline(false);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(20);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-RegmanGenerator['special_whitespace'] = function(block) {
-  var checkbox_vtab = block.getFieldValue('vtab') == 'TRUE';
-  var checkbox_nul = block.getFieldValue('nul') == 'TRUE';
-  var checkbox_carrige = block.getFieldValue('carrige') == 'TRUE';
-  var checkbox_formfeed = block.getFieldValue('formfeed') == 'TRUE';
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator['special_whitespace'] = function(block) {
+        var checkbox_vtab = block.getFieldValue('vtab') == 'TRUE';
+        var checkbox_nul = block.getFieldValue('nul') == 'TRUE';
+        var checkbox_carrige = block.getFieldValue('carrige') == 'TRUE';
+        var checkbox_formfeed = block.getFieldValue('formfeed') == 'TRUE';
+
+        var code = '';
+        if ( checkbox_vtab ) { code += '\\v' };
+        if ( checkbox_nul ) { code += '\\0' };
+        if ( checkbox_carrige ) { code += '\\r' };
+        if ( checkbox_formfeed ) { code += '\\f' };
+
+        return regAlphabet( code );
+    };
 
 //
 // ─── RANGE ──────────────────────────────────────────────────────────────────────
 //
 
-  Blockly.Blocks['range'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Range")
-        .appendField(new Blockly.FieldTextInput("a"), "start")
-        .appendField("-")
-        .appendField(new Blockly.FieldTextInput("z"), "end");
-    this.setInputsInline(false);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(260);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-  };
+    Blockly.Blocks[ 'range' ] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Range")
+                .appendField(new Blockly.FieldTextInput("a"), "start")
+                .appendField("-")
+                .appendField(new Blockly.FieldTextInput("z"), "end");
+            this.setInputsInline(false);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(260);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-RegmanGenerator['range'] = function(block) {
-  var text_start = block.getFieldValue('start');
-  var text_end = block.getFieldValue('end');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator[ 'range' ] = function ( block ) {
+        var text_start = block.getFieldValue('start');
+        var text_end = block.getFieldValue('end');
+        return '[' + text_start + '-' + text_end + ']';
+    };
 
 //
 // ─── MATCH ──────────────────────────────────────────────────────────────────────
 //
 
-  Blockly.Blocks['match'] = {
-  init: function() {
-    this.appendDummyInput( )
-        .appendField("Remember Match");
-    this.appendStatementInput("match")
-        .setCheck("String");
-    this.setInputsInline(false);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(210);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+    Blockly.Blocks['match'] = {
+        init: function() {
+            this.appendDummyInput( )
+                .appendField("Remember Match");
+            this.appendStatementInput("match")
+                .setCheck("String");
+            this.setInputsInline(false);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(210);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-RegmanGenerator['match'] = function(block) {
-  var statements_match = RegmanGenerator.statementToCode(block, 'match');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator[ 'match' ] = function ( block ) {
+        var statements_match = RegmanGenerator.statementToCode(block, 'match').trim( );
+        return '(' + statements_match + ')';
+    };
 
 //
 // ─── SEQUENCE ───────────────────────────────────────────────────────────────────
 //
 
     Blockly.Blocks['sequence'] = {
-  init: function() {
-    this.appendDummyInput( )
-        .appendField("Sequence");
-    this.appendStatementInput("sequence")
-        .setCheck("String");
-    this.setInputsInline(false);
-    this.setPreviousStatement(true, "String");
-    this.setNextStatement(true, "String");
-    this.setColour(260);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
+        init: function() {
+            this.appendDummyInput( )
+                .appendField("Sequence");
+            this.appendStatementInput("sequence")
+                .setCheck("String");
+            this.setInputsInline(false);
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(260);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
-RegmanGenerator['sequence'] = function(block) {
-  var statements_match = RegmanGenerator.statementToCode(block, 'match');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
+    RegmanGenerator[ 'sequence' ] = function ( block ) {
+        var statements_sequence = RegmanGenerator.statementToCode(block, 'sequence').trim( );
+        return regSequence( statements_sequence );
+    };
 
 //
 // ─── ANYTHING BUT ───────────────────────────────────────────────────────────────
@@ -455,7 +435,7 @@ RegmanGenerator['sequence'] = function(block) {
 };
 
 RegmanGenerator['anything_but'] = function(block) {
-  var statements_anything_but = RegmanGenerator.statementToCode(block, 'anything-but');
+  var statements_anything_but = RegmanGenerator.statementToCode(block, 'anything-but').trim( );
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
