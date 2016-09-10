@@ -14,7 +14,11 @@
                 .appendField("Case Insensitive")
                 .appendField(new Blockly.FieldCheckbox("FALSE"), "case-insensitive")
                 .appendField("Multi-Line")
-                .appendField(new Blockly.FieldCheckbox("FALSE"), "multi-line");
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "multi-line")
+                .appendField("Unicode")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "unicode")
+                .appendField("Sticky")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "sticky");
             this.appendStatementInput("children")
                 .setCheck("String");
             this.setInputsInline(false);
@@ -29,6 +33,8 @@
         var checkbox_global = block.getFieldValue('global') == 'TRUE';
         var checkbox_case_insensitive = block.getFieldValue('case-insensitive') == 'TRUE';
         var checkbox_multi_line = block.getFieldValue('multi-line') == 'TRUE';
+        var checkbox_unicode = block.getFieldValue('unicode') == 'TRUE';
+        var checkbox_sticky = block.getFieldValue('sticky') == 'TRUE';
         var statements_children = Blockly.JavaScript.statementToCode(block, 'children');
         // TODO: Assemble JavaScript into code variable.
         var code = '...;\n';
@@ -107,9 +113,10 @@ Blockly.JavaScript['encode'] = function(block) {
 
     Blockly.Blocks['one_or_more'] = {
   init: function() {
-    this.appendStatementInput("regex")
-        .setCheck("String")
+    this.appendDummyInput()
         .appendField("One or more");
+    this.appendStatementInput("regex")
+        .setCheck("String");
     this.setInputsInline(true);
     this.setPreviousStatement(true, "String");
     this.setNextStatement(true, "String");
@@ -134,9 +141,10 @@ Blockly.JavaScript['one_or_more'] = function(block) {
 
     Blockly.Blocks['any_number_of'] = {
   init: function() {
-    this.appendStatementInput("regex")
-        .setCheck("String")
+    this.appendDummyInput( )
         .appendField("Any number of");
+    this.appendStatementInput("regex")
+        .setCheck("String");
     this.setInputsInline(true);
     this.setPreviousStatement(true, "String");
     this.setNextStatement(true, "String");
@@ -186,9 +194,10 @@ Blockly.JavaScript['any'] = function(block) {
 
     Blockly.Blocks['maybe'] = {
   init: function() {
-    this.appendStatementInput("NAME")
-        .setCheck("String")
+    this.appendDummyInput( )
         .appendField("Maybe");
+    this.appendStatementInput("NAME")
+        .setCheck("String");
     this.setInputsInline(true);
     this.setPreviousStatement(true, "String");
     this.setNextStatement(true, "String");
@@ -213,9 +222,10 @@ Blockly.JavaScript['maybe'] = function(block) {
 
     Blockly.Blocks['one_of'] = {
   init: function() {
-    this.appendStatementInput("Items")
-        .setCheck("RegmanOption")
+    this.appendDummyInput( )
         .appendField("One of options");
+    this.appendStatementInput("Items")
+        .setCheck("RegmanOption");
     this.setInputsInline(true);
     this.setPreviousStatement(true, "String");
     this.setNextStatement(true, "String");
@@ -426,9 +436,10 @@ Blockly.JavaScript['range'] = function(block) {
 
   Blockly.Blocks['match'] = {
   init: function() {
-    this.appendStatementInput("match")
-        .setCheck("String")
+    this.appendDummyInput( )
         .appendField("Remember Match");
+    this.appendStatementInput("match")
+        .setCheck("String");
     this.setInputsInline(false);
     this.setPreviousStatement(true, "String");
     this.setNextStatement(true, "String");
@@ -468,6 +479,32 @@ Blockly.JavaScript['match'] = function(block) {
 /*
 Blockly.JavaScript['anything_but'] = function(block) {
   var statements_anything_but = Blockly.JavaScript.statementToCode(block, 'anything-but');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+ */
+
+//
+// ─── COMMENT ────────────────────────────────────────────────────────────────────
+//
+
+  Blockly.Blocks['comment'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("#")
+        .appendField(new Blockly.FieldTextInput("Write your comment here"), "comment");
+    this.setPreviousStatement(true, "String");
+    this.setNextStatement(true, "String");
+    this.setColour(65);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+  };
+
+/*
+Blockly.JavaScript['comment'] = function(block) {
+  var text_comment = block.getFieldValue('comment');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;

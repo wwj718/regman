@@ -15,6 +15,7 @@
 
         <!-- Toolbox Definition -->
         <xml id="toolbox" style="display: none">
+            <block type="comment"></block>
             <block type="one_or_more"></block>
             <block type="any_number_of"></block>
             <block type="match"></block>
@@ -39,9 +40,10 @@
         var xml = '<xml><block type="compose" deletable="false"></block></xml>';
         var toolbox = document.getElementById('toolbox');
 
-        let mainWorkspace = Blockly.inject('regman-coding-view',
-            {collapse: false,
-            toolbox: toolbox});
+        let mainWorkspace = Blockly.inject('regman-coding-view', {
+            collapse: false,
+            toolbox: toolbox,
+        });
 
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), mainWorkspace);
         </script>
