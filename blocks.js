@@ -7,7 +7,6 @@
     Blockly.Blocks['compose'] = {
         init: function() {
             this.appendDummyInput()
-                .setAlign(Blockly.ALIGN_CENTRE)
                 .appendField("Regman Main Composer");
             this.appendDummyInput()
                 .appendField("Global")
@@ -81,7 +80,7 @@ Blockly.JavaScript['alphabet'] = function(block) {
 Blockly.Blocks['encode'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Text")
+        .appendField("Plain Text")
         .appendField(new Blockly.FieldTextInput(""), "text");
     this.setInputsInline(true);
     this.setPreviousStatement(true, "String");
@@ -216,7 +215,7 @@ Blockly.JavaScript['maybe'] = function(block) {
   init: function() {
     this.appendStatementInput("Items")
         .setCheck("RegmanOption")
-        .appendField("One of");
+        .appendField("One of options");
     this.setInputsInline(true);
     this.setPreviousStatement(true, "String");
     this.setNextStatement(true, "String");
@@ -257,6 +256,218 @@ Blockly.JavaScript['maybe'] = function(block) {
 /*
 Blockly.JavaScript['option'] = function(block) {
   var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+ */
+
+//
+// ─── START OF THE LINE ──────────────────────────────────────────────────────────
+//
+
+  Blockly.Blocks['line_start'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Start of the Line");
+    this.setPreviousStatement(true, "String");
+    this.setNextStatement(true, "String");
+    this.setColour(20);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+/*
+Blockly.JavaScript['line_start'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+ */
+
+//
+// ─── END OF THE LINE ────────────────────────────────────────────────────────────
+//
+
+  Blockly.Blocks['line_end'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("End of the Line");
+    this.setPreviousStatement(true, "String");
+    this.setNextStatement(true, "String");
+    this.setColour(20);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+/*
+Blockly.JavaScript['line_end'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+ */
+
+//
+// ─── WHITE SPACE ────────────────────────────────────────────────────────────────
+//
+
+Blockly.Blocks['whitespace'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Whitespace")
+        .appendField("Space")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "space")
+        .appendField("Tab")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "tab")
+        .appendField("Linefeed (\\n)")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "linefeed");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "String");
+    this.setNextStatement(true, "String");
+    this.setColour(20);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+
+
+/*
+Blockly.JavaScript['whitespace'] = function(block) {
+  var checkbox_space = block.getFieldValue('space') == 'TRUE';
+  var checkbox_tab = block.getFieldValue('tab') == 'TRUE';
+  var checkbox_linefeed = block.getFieldValue('linefeed') == 'TRUE';
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+ */
+
+//
+// ─── SPECIAL WHITE SPACE ────────────────────────────────────────────────────────
+//
+
+  Blockly.Blocks['special_whitespace'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Special Whitespace");
+    this.appendDummyInput()
+        .appendField("Vertical Tab (\\v)")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "vtab")
+        .appendField("NUL (\\0)")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "nul");
+    this.appendDummyInput()
+        .appendField("Carriage Return (\\r)")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "carrige");
+    this.appendDummyInput()
+        .appendField("Form-feed (\\f)")
+        .appendField(new Blockly.FieldCheckbox("FALSE"), "formfeed");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "String");
+    this.setNextStatement(true, "String");
+    this.setColour(20);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+/*
+Blockly.JavaScript['special_whitespace'] = function(block) {
+  var checkbox_vtab = block.getFieldValue('vtab') == 'TRUE';
+  var checkbox_nul = block.getFieldValue('nul') == 'TRUE';
+  var checkbox_carrige = block.getFieldValue('carrige') == 'TRUE';
+  var checkbox_formfeed = block.getFieldValue('formfeed') == 'TRUE';
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+ */
+
+//
+// ─── RANGE ──────────────────────────────────────────────────────────────────────
+//
+
+  Blockly.Blocks['range'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Range")
+        .appendField(new Blockly.FieldTextInput("a"), "start")
+        .appendField("-")
+        .appendField(new Blockly.FieldTextInput("z"), "end")
+        .appendField("(case:")
+        .appendField(new Blockly.FieldDropdown([["lowercase", "lowercase"], ["UPPERCASE", "uppercase"], ["Both", "both"]]), "case")
+        .appendField(")");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "String");
+    this.setNextStatement(true, "String");
+    this.setColour(260);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+  };
+
+  /*
+Blockly.JavaScript['range'] = function(block) {
+  var text_start = block.getFieldValue('start');
+  var text_end = block.getFieldValue('end');
+  var dropdown_case = block.getFieldValue('case');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+ */
+
+//
+// ─── MATCH ──────────────────────────────────────────────────────────────────────
+//
+
+  Blockly.Blocks['match'] = {
+  init: function() {
+    this.appendStatementInput("match")
+        .setCheck("String")
+        .appendField("Remember Match");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "String");
+    this.setNextStatement(true, "String");
+    this.setColour(210);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+/*
+Blockly.JavaScript['match'] = function(block) {
+  var statements_match = Blockly.JavaScript.statementToCode(block, 'match');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+ */
+
+//
+// ─── ANYTHING BUT ───────────────────────────────────────────────────────────────
+//
+
+  Blockly.Blocks['anything_but'] = {
+  init: function() {
+    this.appendStatementInput("anything-but")
+        .setCheck("String")
+        .appendField("Anything But");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "String");
+    this.setNextStatement(true, "String");
+    this.setColour(260);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+/*
+Blockly.JavaScript['anything_but'] = function(block) {
+  var statements_anything_but = Blockly.JavaScript.statementToCode(block, 'anything-but');
   // TODO: Assemble JavaScript into code variable.
   var code = '...;\n';
   return code;
