@@ -1,11 +1,33 @@
 
-body, html {
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-}
+//
+// Regman - Visual Language for RegEx
+// Copyright 2016 Kary Foundation, Inc.
+// Author: Pouya Kary <k@karyfoundation.org>
+//
 
-#regman-coding-view {
-    height: 100vh;
-    width: 100vw;
-}
+//
+// ─── SIZINGS ────────────────────────────────────────────────────────────────────
+//
+
+    @toolbar-height: 50px;
+
+//
+// ─── BASE ───────────────────────────────────────────────────────────────────────
+//
+
+    body, html {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+
+//
+// ─── REGMAN VIEW ────────────────────────────────────────────────────────────────
+//
+
+    #regman-coding-view {
+        height: calc( ~'100vh' - @toolbar-height );
+        width: 100vw;
+    }
+
+// ────────────────────────────────────────────────────────────────────────────────
