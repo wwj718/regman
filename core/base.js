@@ -26,9 +26,10 @@
         var toolbox = document.getElementById( 'toolbox' );
 
         workspace = Blockly.inject( 'regman-coding-view', {
-            collapse: false,
+            collapse: true,
             toolbox: toolbox,
             border: false,
+            scrollbars: true,
         });
 
         Blockly.Xml.domToWorkspace( Blockly.Xml.textToDom( xml ), workspace );
@@ -41,7 +42,7 @@
     function setupComposer ( ) {
         var composer = Blockly.getMainWorkspace().getTopBlocks( )[ 0 ];
         composer.moveBy( 40, 40 );
-        composer.movable_ = false;
+        //composer.movable_ = false;
     }
 
 //

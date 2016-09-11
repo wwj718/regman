@@ -19,11 +19,12 @@
     }
 
     function regmanOnResize ( ) {
+        /*
         setTimeout( function ( ) {
             document.getElementsByClassName('blocklyFlyoutBackground')[ 0 ].setAttribute(
                 'd', 'M 0 0 H 350 V ' + ( innerHeight - 150 ) + ' H 0 z'
             );
-        });
+        });*/
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
