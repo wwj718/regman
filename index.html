@@ -3,15 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <title>Regman</title>
+
         <!-- Blockly Core -->
         <script src="blockly-core/blockly_compressed.js"></script>
         <script src="blockly-core/en.js"></script>
+
         <!-- Regman Core -->
-        <script src="regstd.js"></script>
-        <script src="generator.js"></script>
-        <script src="blocks.js"></script>
+        <script src="core/regstd.js"></script>
+        <script src="core/generator.js"></script>
+        <script src="core/blocks.js"></script>
+        <script src="core/init.js"></script>
+
         <!-- Styles -->
-        <link rel="stylesheet" href="ui.css">
+        <link rel="stylesheet" href="styles/ui.css">
     </head>
     <body>
 
@@ -39,18 +43,6 @@
         <!-- View -->
         <div id="regman-coding-view"></div>
 
-        <script>
-        var xml = '<xml><block type="compose" deletable="false"></block></xml>';
-        var toolbox = document.getElementById('toolbox');
-
-        let workspace = Blockly.inject('regman-coding-view', {
-            collapse: false,
-            toolbox: toolbox,
-            scrollbars: true,
-            border: false,
-        });
-
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);
-        </script>
+        <script>initWindow( );</script>
     </body>
 </html>

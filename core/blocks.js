@@ -18,7 +18,6 @@
 
     RegmanGenerator['compose'] = function(block) {
         var statements_children = RegmanGenerator.statementToCode(block, 'children').trim( );
-        console.log( "'" + statements_children + "'");
         return '/' + statements_children.trim( ) + '/';
     };
 
@@ -196,7 +195,7 @@
 
 RegmanGenerator['one_of'] = function(block) {
     var statements_items = RegmanGenerator.statementToCode(block, 'Items').trim( );
-    return '(' + statements_items.substring( 1 ) + ')';
+    return regSequence( statements_items.substring( 1 ) );
 };
 
 //
