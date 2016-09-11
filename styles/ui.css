@@ -4,7 +4,37 @@ html {
   margin: 0;
   overflow: hidden;
 }
-#regman-coding-view {
-  height: calc(100vh - 50px);
+body {
+  background-color: black;
+  height: 100vh;
+}
+.blocklyMainBackground {
+  stroke: transparent;
+}
+header {
+  background-color: #1D3200;
+  height: 48px;
   width: 100vw;
+  border-bottom: #5D5D5D 2px solid;
+}
+.header-text {
+  color: #317410;
+  font-size: 24px;
+  font-family: "Avenir";
+}
+#regman-coding-view {
+  height: calc(100vh - 150px);
+  width: 100vw;
+}
+.display-console {
+  padding: 50px;
+  padding-top: 30px;
+  padding-bottom: 70px;
+  background-color: #272727;
+  border-top: #466D00 2px solid;
+  height: -2px;
+  width: calc(100vw - 100px);
+  font-size: 24px;
+  color: #ECECEC;
+  font-family: 'Courier New', Courier, monospace;
 }
