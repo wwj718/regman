@@ -36,7 +36,7 @@
 //
 
     function regSequence ( code ) {
-        return '(?:' + code + ')';
+        return ( code.length <= 1 )? code : '(?:' + code + ')';
     }
 
 //

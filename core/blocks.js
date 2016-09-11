@@ -506,6 +506,87 @@
         return '';
     };
 
+//
+// ─── REPEAT ─────────────────────────────────────────────────────────────────────
+//
+
+    Blockly.Blocks['repeat'] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Repeat")
+                .appendField(new Blockly.FieldTextInput(""), "count")
+                .appendField("times");
+            this.appendStatementInput("code")
+                .setCheck("String");
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(210);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
+
+    RegmanGenerator['repeat'] = function ( block ) {
+        var text_count = block.getFieldValue('count');
+        var statements_code = RegmanGenerator.statementToCode(block, 'code').trim( );
+        return regSequence( statements_code ) + '{' + text_count + '}';
+    }
+
+//
+// ─── REPEAT AT LEAST ────────────────────────────────────────────────────────────
+//
+
+    Blockly.Blocks['repeat_at_least'] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Repeat at least")
+                .appendField(new Blockly.FieldTextInput(""), "count")
+                .appendField("times");
+            this.appendStatementInput("code")
+                .setCheck("String");
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(210);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
+
+    RegmanGenerator['repeat_at_least'] = function ( block ) {
+        var text_count = block.getFieldValue('count');
+        var statements_code = RegmanGenerator.statementToCode(block, 'code').trim( );
+        return regSequence( statements_code ) + '{' + text_count + ',}';
+    }
+
+//
+// ─── REPEAT IN RANGE ────────────────────────────────────────────────────────────
+//
+
+    Blockly.Blocks['repeat_in_range'] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Repeat in range of")
+                .appendField(new Blockly.FieldTextInput(""), "start")
+                .appendField("to")
+                .appendField(new Blockly.FieldTextInput(""), "end");
+            this.appendStatementInput("code")
+                .setCheck("String");
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(210);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
+
+    RegmanGenerator['repeat_in_range'] = function ( block ) {
+        var text_start = block.getFieldValue('start');
+        var text_end = block.getFieldValue('end');
+        var statements_code = RegmanGenerator.statementToCode(block, 'code').trim( );
+
+        return regSequence( statements_code ) + '{' + text_start + ',' + text_end + '}';
+    }
+
 // ────────────────────────────────────────────────────────────────────────────────
 
 
