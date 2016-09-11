@@ -10,6 +10,9 @@
 //
 
     @toolbar-height: 50px;
+    @display-console: 100px;
+    @acent-color: #466D00;
+    @border-width: 2px;
 
 //
 // ─── BASE ───────────────────────────────────────────────────────────────────────
@@ -21,13 +24,66 @@
         overflow: hidden;
     }
 
+    body {
+        background-color: black;
+        height: 100vh;
+    }
+
+//
+// ─── BLOCKLY WORKSPACE ──────────────────────────────────────────────────────────
+//
+
+    .blocklyWorkspace ( ) {
+        border: none;
+    }
+
+    .blocklyMainBackground {
+        stroke: transparent;
+    }
+
+//
+// ─── TOOLBAR ────────────────────────────────────────────────────────────────────
+//
+
+    header {
+        background-color: #1D3200;
+        height: @toolbar-height - @border-width;
+        width: 100vw;
+        border-bottom: #5D5D5D @border-width solid;
+    }
+
+    .header-text {
+        color: #317410;
+        font-size: 24px;
+        font-family: "Avenir";
+    }
+
 //
 // ─── REGMAN VIEW ────────────────────────────────────────────────────────────────
 //
 
     #regman-coding-view {
-        height: calc( ~'100vh' - @toolbar-height );
+        height: calc( ~'100vh' - @toolbar-height + @display-console );
         width: 100vw;
+    }
+
+//
+// ─── DISPLAY CONSOLE ────────────────────────────────────────────────────────────
+//
+
+    .display-console {
+        @padding-size: 50px;
+        @padding-top-remover: 20px;
+        padding: @padding-size;
+        padding-top: @padding-size - @padding-top-remover;
+        padding-bottom: @padding-size + @padding-top-remover;
+        background-color: #272727;
+        border-top: @acent-color @border-width solid;
+        height: @display-console - @border-width - 2 * @padding-size;
+        width: calc( ~'100vw' - 2 * @padding-size );
+        font-size: 24px;
+        color: #ECECEC;
+        font-family: 'Courier New', Courier, monospace
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
