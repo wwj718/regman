@@ -12,12 +12,19 @@
         <script src="core/regstd.js"></script>
         <script src="core/generator.js"></script>
         <script src="core/blocks.js"></script>
-        <script src="core/init.js"></script>
+        <script src="core/blockly-styles.js"></script>
+        <script src="core/base.js"></script>
+        <script src="core/ui.js"></script>
 
         <!-- Styles -->
         <link rel="stylesheet" href="styles/ui.css">
     </head>
     <body>
+
+        <!-- Header -->
+        <header>
+            <div class="header-text"></div>
+        </header>
 
         <!-- Toolbox Definition -->
         <xml id="toolbox" style="display: none">
@@ -43,6 +50,15 @@
         <!-- View -->
         <div id="regman-coding-view"></div>
 
-        <script>initWindow( );</script>
+        <!-- Console -->
+        <div class="display-console" id="console">
+            /hello/
+        </div>
+
+        <!-- Init Page -->
+        <script>
+            initWindow( );
+            document.getElementsByClassName('blocklyFlyoutBackground')[ 0 ].setAttribute('d', 'M 0 0 H 340 V 163 H 0 z' );
+        </script>
     </body>
 </html>
