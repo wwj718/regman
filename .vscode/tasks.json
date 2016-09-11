@@ -3,7 +3,7 @@
     "command": "bash",
     "isShellCommand": true,
     "args": [
-        "bash.sh"
+        "build.sh"
     ],
     "showOutput": "never"
 }
