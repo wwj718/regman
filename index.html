@@ -20,12 +20,6 @@
         <link rel="stylesheet" href="styles/ui.css">
     </head>
     <body>
-
-        <!-- Header -->
-        <header>
-            <div class="header-text"></div>
-        </header>
-
         <!-- Toolbox Definition -->
         <xml id="toolbox" style="display: none">
             <block type="comment"></block>
@@ -35,6 +29,7 @@
             <block type="maybe"></block>
             <block type="one_of"></block>
             <block type="option"></block>
+            <block type="lookahead"></block>
             <block type="repeat"></block>
             <block type="repeat_at_least"></block>
             <block type="repeat_in_range"></block>
@@ -52,13 +47,14 @@
             <block type="line_end"></block>
         </xml>
 
-        <!-- View -->
-        <div id="regman-coding-view"></div>
-
         <!-- Console -->
         <div class="display-console" id="console">
             /hello/
         </div>
+
+        <!-- View -->
+        <div id="regman-coding-view"></div>
+
 
         <!-- Init Page -->
         <script>

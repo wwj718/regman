@@ -25,7 +25,7 @@
     }
 
     body {
-        background-color: black;
+        background-color: white;
         height: 100vh;
     }
 
@@ -46,10 +46,10 @@
 //
 
     header {
-        background-color: #1D3200;
-        height: @toolbar-height - @border-width;
+        background-color: #F5F5F5;
+        height: @toolbar-height - 1px;
         width: 100vw;
-        border-bottom: #5D5D5D @border-width solid;
+        border-bottom: 1px solid #E5E5E5;
     }
 
     .header-text {
@@ -76,14 +76,17 @@
         @padding-top-remover: 20px;
         padding: @padding-size;
         padding-top: @padding-size - @padding-top-remover;
-        padding-bottom: @padding-size + @padding-top-remover;
-        background-color: #272727;
-        border-top: @acent-color @border-width solid;
-        height: @display-console - @border-width - 2 * @padding-size;
+        padding-bottom: @padding-size;
+        background-color: #FAFAFA;
+        border-bottom: 1px solid #EEEEEE;
+        //border-top: @acent-color @border-width solid;
+        height: @display-console /*- @border-width*/ - 2*  @padding-size;
         width: calc( ~'100vw' - 2 * @padding-size );
         font-size: 24px;
-        color: #ECECEC;
-        font-family: 'Courier New', Courier, monospace
+        text-align: center;
+        color: #348ACB;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
     }
 
 // ────────────────────────────────────────────────────────────────────────────────

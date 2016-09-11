@@ -10,7 +10,7 @@
             styles: [
                 {
                     key: 'fill',
-                    value: '#232323'
+                    value: 'white'
                 },
                 {
                     key: 'stroke',
@@ -23,7 +23,7 @@
             styles: [
                 {
                     key: 'fill',
-                    value: '#333333'
+                    value: '#FAFAFA'
                 }
             ]
         },
@@ -32,7 +32,7 @@
             styles: [
                 {
                     key: 'fill',
-                    value: '#333333'
+                    value: 'white'
                 }
             ]
         }

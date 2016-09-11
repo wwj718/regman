@@ -5,17 +5,17 @@ html {
   overflow: hidden;
 }
 body {
-  background-color: black;
+  background-color: white;
   height: 100vh;
 }
 .blocklyMainBackground {
   stroke: transparent;
 }
 header {
-  background-color: #1D3200;
-  height: 48px;
+  background-color: #F5F5F5;
+  height: 49px;
   width: 100vw;
-  border-bottom: #5D5D5D 2px solid;
+  border-bottom: 1px solid #E5E5E5;
 }
 .header-text {
   color: #317410;
@@ -29,12 +29,14 @@ header {
 .display-console {
   padding: 50px;
   padding-top: 30px;
-  padding-bottom: 70px;
-  background-color: #272727;
-  border-top: #466D00 2px solid;
-  height: -2px;
+  padding-bottom: 50px;
+  background-color: #FAFAFA;
+  border-bottom: 1px solid #EEEEEE;
+  height: 0px /*- @border-width*/;
   width: calc(100vw - 100px);
   font-size: 24px;
-  color: #ECECEC;
+  text-align: center;
+  color: #348ACB;
   font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
 }
