@@ -13,7 +13,6 @@
         setUpWorkspace( );
         setupComposer( );
         setupEventListeners( );
-
         applyAdditionalStyles( );
     }
 

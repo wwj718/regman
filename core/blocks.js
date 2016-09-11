@@ -62,6 +62,28 @@
     };
 
 //
+// ─── ENCODE UNICODE ─────────────────────────────────────────────────────────────
+//
+
+    Blockly.Blocks[ 'unicode' ] = {
+        init: function ( ) {
+            this.appendDummyInput( )
+                .appendField( "Encode Unicode" )
+                .appendField( new Blockly.FieldTextInput( "" ), "text" );
+            this.setInputsInline( true );
+            this.setPreviousStatement( true, "String" );
+            this.setNextStatement( true, "String" );
+            this.setColour( 330 );
+            this.setTooltip( '' );
+            this.setHelpUrl( 'http://www.example.com/' );
+        }
+    };
+
+    RegmanGenerator[ 'unicode' ] = function ( block ) {
+        return regUnicodify( block.getFieldValue( 'text' ) );
+    };
+
+//
 // ─── ENCODE ─────────────────────────────────────────────────────────────────────
 //
 
@@ -315,12 +337,12 @@
         var checkbox_tab = block.getFieldValue('tab') == 'TRUE';
         var checkbox_linefeed = block.getFieldValue('linefeed') == 'TRUE';
 
-        var code = '';
-        if ( checkbox_space ) { code += '\\s' };
-        if ( checkbox_tab ) { code += '\\t' };
-        if ( checkbox_linefeed ) { code += '\\n' };
+        var chars = [ ];
+        if ( checkbox_space ) { chars.push( '\\s' ) };
+        if ( checkbox_tab ) { chars.push( '\\t' ) };
+        if ( checkbox_linefeed ) { chars.push( '\\n' ) };
 
-        return regAlphabet( code );
+        return regAlphabet( chars );
     };
 
 //
@@ -357,11 +379,11 @@
         var checkbox_carrige = block.getFieldValue('carrige') == 'TRUE';
         var checkbox_formfeed = block.getFieldValue('formfeed') == 'TRUE';
 
-        var code = '';
-        if ( checkbox_vtab ) { code += '\\v' };
-        if ( checkbox_nul ) { code += '\\0' };
-        if ( checkbox_carrige ) { code += '\\r' };
-        if ( checkbox_formfeed ) { code += '\\f' };
+        var code = [ ];
+        if ( checkbox_vtab ) { code.pus( '\\v' ) };
+        if ( checkbox_nul ) { code.pus( '\\0' ) };
+        if ( checkbox_carrige ) { code.pus( '\\r' ) };
+        if ( checkbox_formfeed ) { code.pus( '\\f' ) };
 
         return regAlphabet( code );
     };
