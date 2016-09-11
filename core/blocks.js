@@ -587,6 +587,39 @@
         return regSequence( statements_code ) + '{' + text_start + ',' + text_end + '}';
     }
 
+//
+// ─── LOOKAHEAD ──────────────────────────────────────────────────────────────────
+//
+
+    Blockly.Blocks['lookahead'] = {
+        init: function() {
+            this.appendDummyInput()
+                .appendField("Match ( not be followed by lookahead")
+                .appendField(new Blockly.FieldCheckbox("FALSE"), "reverse")
+                .appendField(")");
+            this.appendStatementInput("match")
+                .setCheck("String");
+            this.appendDummyInput()
+                .appendField("Lookahead ");
+            this.appendStatementInput("lookahead")
+                .setCheck("String");
+            this.setPreviousStatement(true, "String");
+            this.setNextStatement(true, "String");
+            this.setColour(210);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
+
+    RegmanGenerator['lookahead'] = function(block) {
+        var checkbox_reverse = block.getFieldValue('reverse') == 'TRUE';
+        var statements_match = RegmanGenerator.statementToCode(block, 'match').trim( );
+        var statements_lookahead = RegmanGenerator.statementToCode(block, 'lookahead').trim( );
+
+        var reverseSign = (checkbox_reverse)? '!': '=';
+        return regSequence( statements_match ) + '(?' + reverseSign + regSequence( statements_lookahead ) + ')';
+    };
+
 // ────────────────────────────────────────────────────────────────────────────────
 
 
