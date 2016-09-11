@@ -84,6 +84,28 @@
     };
 
 //
+// ─── FREE FORM REGEX ────────────────────────────────────────────────────────────
+//
+
+    Blockly.Blocks[ 'free_form_regex' ] = {
+        init: function ( ) {
+            this.appendDummyInput( )
+                .appendField( "Freeform RegExp" )
+                .appendField( new Blockly.FieldTextInput( "" ), "regex" );
+            this.setInputsInline( true );
+            this.setPreviousStatement( true, "String" );
+            this.setNextStatement( true, "String" );
+            this.setColour( 330 );
+            this.setTooltip( '' );
+            this.setHelpUrl( 'http://www.example.com/' );
+        }
+    };
+
+    RegmanGenerator[ 'free_form_regex' ] = function ( block ) {
+        return block.getFieldValue( 'regex' );
+    };
+
+//
 // ─── MORE THAN ONE ──────────────────────────────────────────────────────────────
 //
 

@@ -9,10 +9,12 @@
             class: 'blocklyMainBackground',
             styles: [
                 {
-                    key: 'fill', value: '#232323'
+                    key: 'fill',
+                    value: '#232323'
                 },
                 {
-                    key: 'stroke', value: 'transparent'
+                    key: 'stroke',
+                    value: 'transparent'
                 }
             ]
         },
@@ -20,7 +22,8 @@
             class: 'blocklyFlyoutBackground',
             styles: [
                 {
-                    key: 'fill', value: '#333333'
+                    key: 'fill',
+                    value: '#333333'
                 }
             ]
         },
@@ -28,7 +31,8 @@
             class: 'blocklyFlyout',
             styles: [
                 {
-                    key: 'fill', value: '#333333'
+                    key: 'fill',
+                    value: '#333333'
                 }
             ]
         }
