@@ -1,4 +1,5 @@
-
+//todo 使用工厂工具: https://blockly-demo.appspot.com/static/demos/blockfactory/index.html
+//todo 添加工具组
 //
 // ─── COMPOSE ────────────────────────────────────────────────────────────────────
 //
@@ -12,7 +13,7 @@
             this.setInputsInline(false);
             this.setColour(120);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -29,11 +30,11 @@
         init: function() {
             this.appendDummyInput()
                 .appendField("Alphabet")
-                .appendField("0-9")
+                .appendField("笑一个") //实际是数字0-9
                 .appendField(new Blockly.FieldCheckbox("FALSE"), "numbers")
-                .appendField("a-z")
+                .appendField("清理屏幕") //小写字母
                 .appendField(new Blockly.FieldCheckbox("FALSE"), "lowercase")
-                .appendField("A-Z")
+                .appendField("播放声音") //大写字母
                 .appendField(new Blockly.FieldCheckbox("FALSE"), "uppercase")
                 .appendField("Other")
                 .appendField(new Blockly.FieldTextInput(""), "other");
@@ -42,10 +43,25 @@
             this.setNextStatement(true, "String");
             this.setColour(260);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
+    function wwjtest(code) {
+      ip = '192.168.0.127'
+      blockly_server = 'http://192.168.0.127:5000/run'
+      params = `key=test&code=${code}`
+      //console.log(`code=${code}`);
+      //params = "lorem=ipsum&name=binny";
+      xmlhttp=new XMLHttpRequest();
+      xmlhttp.open("POST",blockly_server,true);
+      xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      //es6
+      // var name = "wwj";
+      //console.log(`hi, ${name}!`);
+      xmlhttp.send(params);
+      //xmlhttp.send();
 
+    }
     RegmanGenerator['alphabet'] = function(block) {
         var checkbox_numbers = block.getFieldValue('numbers') == 'TRUE';
         var checkbox_lowercase = block.getFieldValue('lowercase') == 'TRUE';
@@ -53,12 +69,17 @@
         var text_other = block.getFieldValue('other');
 
         var code = '';
-        if ( checkbox_numbers ) { code += '0-9' };
-        if ( checkbox_lowercase ) { code += 'a-z' };
+        //变为单行python代码
+        //todo：整合既有代码
+        if ( checkbox_numbers ) { code += 'import smile;smile.draw_smile()' }; //亮灯 //这里加入python代码
+        if ( checkbox_lowercase ) { code += 'import smile;smile.clear()' }; //播放声音
         if ( checkbox_uppercase ) { code += 'A-Z' };
         code += regEncodeText( text_other );
 
+        //跑一个函数，发送代码
+        wwjtest(code); //ok
         return '[' + code + ']';
+        //return '[' + 'wwj' + ']';
     };
 
 //
@@ -75,7 +96,7 @@
             this.setNextStatement( true, "String" );
             this.setColour( 330 );
             this.setTooltip( '' );
-            this.setHelpUrl( 'http://www.example.com/' );
+            this.setHelpUrl( 'http://code.pkmooc.com/' );
         }
     };
 
@@ -97,7 +118,7 @@
             this.setNextStatement( true, "String" );
             this.setColour( 330 );
             this.setTooltip( '' );
-            this.setHelpUrl( 'http://www.example.com/' );
+            this.setHelpUrl( 'http://code.pkmooc.com/' );
         }
     };
 
@@ -119,7 +140,7 @@
             this.setNextStatement( true, "String" );
             this.setColour( 330 );
             this.setTooltip( '' );
-            this.setHelpUrl( 'http://www.example.com/' );
+            this.setHelpUrl( 'http://code.pkmooc.com/' );
         }
     };
 
@@ -142,7 +163,7 @@
             this.setNextStatement(true, "String");
             this.setColour(210);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -166,7 +187,7 @@
             this.setNextStatement(true, "String");
             this.setColour(210);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -188,7 +209,7 @@
             this.setNextStatement(true, "String");
             this.setColour(20);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -212,7 +233,7 @@
             this.setNextStatement(true, "String");
             this.setColour(210);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -237,7 +258,7 @@
             this.setNextStatement(true, "String");
             this.setColour(210);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -260,7 +281,7 @@
             this.setNextStatement(true, "RegmanOption");
             this.setColour(160);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -280,7 +301,7 @@
             this.setNextStatement(true, "String");
             this.setColour(20);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -300,7 +321,7 @@
             this.setNextStatement(true, "String");
             this.setColour(20);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -327,7 +348,7 @@
             this.setNextStatement(true, "String");
             this.setColour(20);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -369,7 +390,7 @@
             this.setNextStatement(true, "String");
             this.setColour(20);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -404,7 +425,7 @@
             this.setNextStatement(true, "String");
             this.setColour(260);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -429,7 +450,7 @@
             this.setNextStatement(true, "String");
             this.setColour(210);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -453,7 +474,7 @@
             this.setNextStatement(true, "String");
             this.setColour(260);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -476,7 +497,7 @@
             this.setNextStatement(true, "String");
             this.setColour(260);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -498,7 +519,7 @@
             this.setNextStatement(true, "String");
             this.setColour(65);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -522,7 +543,7 @@
             this.setNextStatement(true, "String");
             this.setColour(210);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -548,7 +569,7 @@
             this.setNextStatement(true, "String");
             this.setColour(210);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -575,7 +596,7 @@
             this.setNextStatement(true, "String");
             this.setColour(210);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
@@ -607,7 +628,7 @@
             this.setNextStatement(true, "String");
             this.setColour(210);
             this.setTooltip('');
-            this.setHelpUrl('http://www.example.com/');
+            this.setHelpUrl('http://code.pkmooc.com/');
         }
     };
 
